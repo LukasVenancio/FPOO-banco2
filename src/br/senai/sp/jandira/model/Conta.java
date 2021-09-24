@@ -17,7 +17,15 @@ public class Conta {
 	}
 	
 	public void transferir() {
-		
+	}
+	
+	public void exibirDetalhes() {
+		System.out.println();
+		System.out.println("------------------------------");
+		System.out.printf("Titular: %s\n", titular);
+		System.out.printf("Número: %s\n", numero);
+		System.out.printf("Agência: %s\n", numeroAgencia);
+		System.out.printf("Saldo: %s\n", saldo);
 	}
 
 }
