@@ -1,24 +1,53 @@
 package br.senai.sp.jandira.model;
 
 public class Conta {
-	
+
 	public String tipo;
-	public String numero;
+	private String numero;
 	public String numeroAgencia;
 	public String titular;
-	public double saldo;
-	
+	private double saldo;
+
+	public Conta(String mumeroConta) {
+		numero = mumeroConta;
+	}
+
 	public void depositar(double valorDeposito) {
-		saldo += valorDeposito;
+
+		if (valorDeposito > 0) {
+			saldo += valorDeposito;
+		} else {
+			System.out.println("O valor do deposito precisa ser positivo!");
+		}
 	}
-	
-	public void sacar(double valorSaque) {
-		saldo -= valorSaque;
+
+	public boolean sacar(double valorSaque) {
+
+		if (valorSaque <= saldo) {
+			if (valorSaque > 0) {
+				saldo -= valorSaque;
+				return true;
+			} else {
+				System.out.println("O valor do deposito precisa ser positivo!");
+				return false;
+			}
+		} else {
+			System.out.println("O valor do saque é maior do que o valor do saldo,\nnão foi possível realizar o saque!");
+			return false;
+		}
 	}
-	
-	public void transferir() {
+
+	public void transferir(Conta contaDestino, double valorTransferencia) {
+
+		boolean resultado = sacar(valorTransferencia);
+
+		if (resultado) {
+			contaDestino.depositar(valorTransferencia);
+		}else {
+			System.out.println("Não foi possível efetuar a tranferência");
+		}
 	}
-	
+
 	public void exibirDetalhes() {
 		System.out.println();
 		System.out.println("------------------------------");
