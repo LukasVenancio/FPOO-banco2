@@ -1,15 +1,34 @@
 package br.senai.sp.jandira.model;
 
+import br.senai.sp.jandira.lista.TipoConta;
+
 public class Conta {
 
-	public String tipo;
+	private TipoConta tipo;
 	private String numero;
-	public String numeroAgencia;
-	public String titular;
+	private String numeroAgencia;
+	public Cliente titular;
 	private double saldo;
 
 	public Conta(String mumeroConta) {
 		numero = mumeroConta;
+	}
+
+	public void setTipo(TipoConta tipo) {
+		this.tipo = tipo;
+	}
+	
+	public TipoConta getTipo() {
+		return tipo;
+	}
+	
+	public void setNumeroAgencia(String numeroAgencia) {
+		this.numeroAgencia = numeroAgencia;
+		
+	}
+	
+	public String getNumeroAgencia() {
+		return numeroAgencia;
 	}
 
 	public void depositar(double valorDeposito) {
@@ -43,7 +62,7 @@ public class Conta {
 
 		if (resultado) {
 			contaDestino.depositar(valorTransferencia);
-		}else {
+		} else {
 			System.out.println("Não foi possível efetuar a tranferência");
 		}
 	}
@@ -55,6 +74,8 @@ public class Conta {
 		System.out.printf("Número: %s\n", numero);
 		System.out.printf("Agência: %s\n", numeroAgencia);
 		System.out.printf("Saldo: %s\n", saldo);
+		System.out.printf("Tipo da conta: %s\n", tipo);
+		
 	}
 
 }
